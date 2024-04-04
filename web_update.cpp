@@ -127,6 +127,10 @@ uint8_t web_update::update_wifi()
     totalLength = wifi_client.getSize();
     uint32_t len = totalLength;
     Update.begin(UPDATE_SIZE_UNKNOWN);
+
+    time_out *= 1000;
+    updateAsyncDelay.start(time_out, AsyncDelay::MILLIS);
+    
     if (debug)
     {
         Serial.print("Update size: ");
